@@ -7,6 +7,25 @@ utilizar pandas, numpy o scipy.
 
 
 def pregunta_08():
+    datos_por_cantidad = {}
+
+    with open("files/input/data.csv", "r") as archivo:
+        for fila in archivo:
+            elementos = fila.strip().split("\t")
+            simbolo = elementos[0]
+            cantidad = int(elementos[1])
+
+            if cantidad not in datos_por_cantidad:
+                datos_por_cantidad[cantidad] = set()
+
+            datos_por_cantidad[cantidad].add(simbolo)
+
+    resultado_ordenado = []
+    for cantidad, simbolos in datos_por_cantidad.items():
+        resultado_ordenado.append((cantidad, sorted(list(simbolos))))
+
+    resultado_ordenado.sort()
+    return resultado_ordenado
     """
     Genere una lista de tuplas, donde el primer elemento de cada tupla
     contiene  el valor de la segunda columna; la segunda parte de la tupla

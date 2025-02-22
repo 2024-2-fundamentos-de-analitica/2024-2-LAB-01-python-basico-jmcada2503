@@ -7,6 +7,22 @@ utilizar pandas, numpy o scipy.
 
 
 def pregunta_03():
+    conteo = {}
+    with open("files/input/data.csv", "r") as file:
+        for line in file:
+            valor = line.strip().split("\t")
+            numero = valor[1]
+            letra = valor[0]
+            
+            
+            if letra in conteo:
+                conteo[letra] += int(numero)
+            else:
+                conteo[letra] = int(numero)
+    
+    #ordenar por letra
+    resultado = sorted(conteo.items())
+    return resultado
     """
     Retorne la suma de la columna 2 por cada letra de la primera columna como
     una lista de tuplas (letra, suma) ordendas alfabeticamente.
